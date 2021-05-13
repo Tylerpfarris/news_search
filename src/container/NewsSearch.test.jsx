@@ -13,14 +13,14 @@ describe('NewsSearch Container', () => {
     fetch.mockResolvedValue({
       json: () => [
         {
-          source: '',
-          image: '',
-          author: '',
-          title: '',
-          description: '',
-          url: '',
-          publishedAt: '',
-          content: '',
+          source: 'CNN',
+          image: 'CNN',
+          author: 'CNN',
+          title: 'CNN',
+          description: 'CNN',
+          url: 'CNN',
+          publishedAt: 'CNN',
+          content: 'CNN',
         },
       ],
     });
