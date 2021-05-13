@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 describe('NewsSearch Container', () => {
   it('displays a list of articles dependent on search params', async () => {
     render(<NewsSearch />);
-    screen.findByText('Loading...');
+    await screen.findByText('Loading...');
 
     const ulEl = await screen.findByRole('list', { name: 'article list' });
     expect(ulEl).not.toBeEmptyDOMElement();
