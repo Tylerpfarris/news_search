@@ -1,17 +1,16 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
 
 
-const mungeResponse = (obj) => {
-    return obj.map(({ source, author, title, description, url, urlToImage, publishedAt, content }) => ({
+
+const mungeResponse = (articles) => {
+    return articles.map(({ source, author, title, description, url, urlToImage, publishedAt, content }) => ({
         source: source.name,
-        author: author,
-        title: title,
-        description: description,
-        url: url,
-        image: urlToImage,
-        publishedAt: publishedAt,
-        content: content
+        image:urlToImage,
+        author,
+        title,
+        description,
+        url,
+        publishedAt,
+        content
     }));
 }
 
