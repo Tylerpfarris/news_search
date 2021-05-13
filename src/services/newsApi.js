@@ -2,7 +2,7 @@
 
 
 const mungeResponse = (articles) => {
-    return articles.map(({ source, author, title, description, url, urlToImage, publishedAt, content }) => ({
+    return articles?.map(({ source, author, title, description, url, urlToImage, publishedAt, content }) => ({
         source: source.name,
         image:urlToImage,
         author,
