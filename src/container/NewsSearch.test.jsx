@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import NewsSearch from './NewsSearch';
