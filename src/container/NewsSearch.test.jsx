@@ -38,7 +38,6 @@ jest.mock('../services/newsApi', () => ({
 //   rest.get(
 //     `https://newsapi.org/v2/everything`,
 //     (req, res, ctx) => {
-      
 
 //       return res(ctx.json(newApiJson));
 //     }
@@ -50,23 +49,22 @@ describe('NewsSearch Container', () => {
   // afterAll(() => server.close());
 
   it('displays a list of articles dependent on search params', async () => {
-
     render(<NewsSearch />);
     await screen.findByText('Loading...');
 
     const ulEl = await screen.findByRole('list', { name: 'article list' });
-    
+
     const inputEl = await screen.findByLabelText('Search New Articles');
     userEvent.type(inputEl, 'Biden');
-    
+
     const submitButton = await screen.findByRole('button', {
       name: 'search-articles',
     });
     userEvent.click(submitButton);
-    
+
     return waitFor(() => {
       const articles = screen.getAllByText('Biden', { exact: false });
-      expect(articles).toHaveLength(31);
+      expect(articles).toHaveLength(1);
       expect(ulEl).not.toBeEmptyDOMElement();
     });
   });
