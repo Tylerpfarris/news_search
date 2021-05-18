@@ -8,21 +8,24 @@ import newApiJson from '../newsApi.json';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
+jest.mock('../services/newsApi', () => ({
+  fetchNewsBySearch: () => newApiJson,
+  fetchNewsArticles: () => newApiJson,
+}));
+// const server = setupServer(
+//   rest.get(
+//     `https://newsapi.org/v2/everything`,
+//     (req, res, ctx) => {
+      
 
-const server = setupServer(
-  rest.get(
-    `https://newsapi.org/v2/everything`,
-    (req, res, ctx) => {
-
-
-      return res(ctx.json({articles: newApiJson}));
-    }
-  )
-);
+//       return res(ctx.json(newApiJson));
+//     }
+//   )
+// );
 
 describe('NewsSearch Container', () => {
-  beforeAll(() => server.listen());
-  afterAll(() => server.close());
+  // beforeAll(() => server.listen());
+  // afterAll(() => server.close());
 
   it('displays a list of articles dependent on search params', async () => {
 
