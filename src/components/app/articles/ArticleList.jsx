@@ -5,7 +5,7 @@ import Article from './Article';
 const ArticleList = ({ articles }) => {
   return (
     <ul aria-label='article list'>
-      {articles?.map(({source, author,title, description, url, image, publishedAt, content}) => (
+      {articles.map(({source, author,title, description, url, image, publishedAt, content}) => (
         <li key={`${author}-${title}-${publishedAt}`}>
           <Article
             source={source}

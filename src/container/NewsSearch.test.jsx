@@ -4,31 +4,55 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import NewsSearch from './NewsSearch';
 import userEvent from '@testing-library/user-event';
-import fetch from 'node-fetch';
+import newApiJson from '../newsApi.json';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 
-jest.mock('node-fetch');
+jest.mock('../services/newsApi', () => ({
+  fetchNewsBySearch: () => [
+    {
+      source: 'Biden',
+      image: '',
+      author: '',
+      title: '',
+      description: '',
+      url: '',
+      publishedAt: '',
+      content: '',
+    },
+  ],
+  fetchNewsArticles: () => [
+    {
+      source: 'Biden',
+      image: '',
+      author: '',
+      title: '',
+      description: '',
+      url: '',
+      publishedAt: '',
+      content: '',
+    },
+  ],
+}));
+// const server = setupServer(
+//   rest.get(
+//     `https://newsapi.org/v2/everything`,
+//     (req, res, ctx) => {
+
+//       return res(ctx.json(newApiJson));
+//     }
+//   )
+// );
 
 describe('NewsSearch Container', () => {
+  // beforeAll(() => server.listen());
+  // afterAll(() => server.close());
+
   it('displays a list of articles dependent on search params', async () => {
-    fetch.mockResolvedValue({
-      json: () => [
-        {
-          source: 'CNN',
-          image: 'CNN',
-          author: 'CNN',
-          title: 'CNN',
-          description: 'CNN',
-          url: 'CNN',
-          publishedAt: 'CNN',
-          content: 'CNN',
-        },
-      ],
-    });
     render(<NewsSearch />);
     await screen.findByText('Loading...');
 
     const ulEl = await screen.findByRole('list', { name: 'article list' });
-    expect(ulEl).not.toBeEmptyDOMElement();
 
     const inputEl = await screen.findByLabelText('Search New Articles');
     userEvent.type(inputEl, 'Biden');
@@ -40,7 +64,8 @@ describe('NewsSearch Container', () => {
 
     return waitFor(() => {
       const articles = screen.getAllByText('Biden', { exact: false });
-      expect(articles).toHaveLength(33);
+      expect(articles).toHaveLength(1);
+      expect(ulEl).not.toBeEmptyDOMElement();
     });
   });
 });
