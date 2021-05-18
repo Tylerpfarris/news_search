@@ -14,7 +14,8 @@ const server = setupServer(
     `https://newsapi.org/v2/everything`,
     (req, res, ctx) => {
 
-      return res(ctx.json(newApiJson));
+
+      return res(ctx.json({articles: newApiJson}));
     }
   )
 );
