@@ -9,8 +9,30 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
 jest.mock('../services/newsApi', () => ({
-  fetchNewsBySearch: () => newApiJson,
-  fetchNewsArticles: () => newApiJson,
+  fetchNewsBySearch: () => [
+    {
+      source: 'Biden',
+      image: '',
+      author: '',
+      title: '',
+      description: '',
+      url: '',
+      publishedAt: '',
+      content: '',
+    },
+  ],
+  fetchNewsArticles: () => [
+    {
+      source: 'Biden',
+      image: '',
+      author: '',
+      title: '',
+      description: '',
+      url: '',
+      publishedAt: '',
+      content: '',
+    },
+  ],
 }));
 // const server = setupServer(
 //   rest.get(
